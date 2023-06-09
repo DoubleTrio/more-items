@@ -1,0 +1,57 @@
+﻿{
+"Version": "0.7.12.0",
+"Object": {
+"$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"orb_blue": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 1,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.OrbState"
+}
+],
+"Name": {
+"DefaultText": "Blue Portal Orb",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 12
+},
+"orb_orange": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 1,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.OrbState"
+}
+],
+"Name": {
+"DefaultText": "Orange Portal Orb",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 12
+},
+"orb_monster": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 1,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.OrbState"
+}
+],
+"Name": {
+"DefaultText": "Monster Orb",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 12
+}
+}
+}
