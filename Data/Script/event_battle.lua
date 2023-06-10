@@ -1,3 +1,5 @@
+require 'constants'
+require 'helpers'
 
 ListType = luanet.import_type('System.Collections.Generic.List`1')
 MobSpawnType = luanet.import_type('RogueEssence.LevelGen.MobSpawn')
@@ -7,6 +9,10 @@ BATTLE_SCRIPT = {}
 function BATTLE_SCRIPT.MonsterOrbEvent(owner, ownerChar, context, args)
   context.TurnCancel.Cancel = true
   local radius = 5
+  local shiny_rate = CONSTANTS.MONSTER_HOUSE_SHINY_RATE
+
+  if type(args.ShinyRate) == "number" then shiny_rate = args.ShinyRate end
+  if type(args.Radius) == "number" then radius = args.Radius end
 
   local rect_area = RogueElements.Loc(1)
   local rect_area2 = RogueElements.Loc(3)
@@ -74,7 +80,7 @@ function BATTLE_SCRIPT.MonsterOrbEvent(owner, ownerChar, context, args)
     for _ = 1, total_enemies, 1 do
       local randint = _DATA.Save.Rand:Next(0, all_spawns.Count - 1)
       local spawn = all_spawns[randint]
-      spawn.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnAltColor(CONSTANTS.MONSTER_HOUSE_SHINY_RATE))
+      spawn.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnAltColor(shiny_rate))
       house_event.Mobs:Add(spawn)
     end
   end
@@ -90,7 +96,11 @@ function BATTLE_SCRIPT.MonsterOrbEvent(owner, ownerChar, context, args)
   end
 end
 
-local function LocToNearestItem(origin, radius, item_name)
+---@param origin number
+---@param radius number
+---@param item_name string
+---Returns the loc of the nearest item
+local function NearestItemLoc(origin, radius, item_name)
   local x = 0
   local y = 0
   local dx, dy = 0, -1
@@ -114,9 +124,12 @@ end
 
 function BATTLE_SCRIPT.NearestItemInRadius(owner, ownerChar, context, args)
   local item_name = args.Item
-  local radius = args.Radius
+  local radius = CONSTANTS.MAX_RANGE
+
+  if type(args.Radius) == "number" then radius = args.Radius end
+
   local origin = context.User.CharLoc
-  local item_loc = LocToNearestItem(origin, radius, item_name)
+  local item_loc = NearestItemLoc(origin, radius, item_name)
   if item_loc == nil then
     context.CancelState.Cancel = true
     local inv_item = RogueEssence.Dungeon.InvItem(item_name)

@@ -1,3 +1,6 @@
+require 'constants'
+require 'helpers'
+
 MapEffectStepType = luanet.import_type('RogueEssence.LevelGen.MapEffectStep`1')
 MapGenContextType = luanet.import_type('RogueEssence.LevelGen.ListMapGenContext')
 EntranceType = luanet.import_type('RogueEssence.LevelGen.MapGenEntrance')
@@ -10,11 +13,12 @@ function ZONE_GEN_SCRIPT.Test(zoneContext, context, queue, seed, args)
 end
 
 function ZONE_GEN_SCRIPT.ShinyZoneStep(zoneContext, context, queue, seed, args)
-  local slot = GAME:FindPlayerItem("bag_shiny_charm", true, true)
-  local chance = CONSTANTS.WILD_SHINY_RATE
-  if slot:IsValid() then 
-    chance = CONSTANTS.CHARM_SHINY_RATE
-  end
-  local skin_state = PMDC.Dungeon.SkinTableState(chance, "shiny", "shiny")
-  _DATA.UniversalEvent.UniversalStates:Set(skin_state)
+  local wild_rate = CONSTANTS.WILD_SHINY_RATE
+  local charm_rate = CONSTANTS.CHARM_SHINY_RATE
+  local item = "bag_shiny_charm"
+
+  if type(args.WildRate) == "number" then wild_rate = args.WildRate end
+  if type(args.CharmRate) == "number" then charm_rate = args.CharmRate end
+  if type(args.ShinyItem) == "string" then item = args.ShinyItem end
+  HELPERS.AdjustShinySpawnRate(item, wild_rate, charm_rate)
 end
