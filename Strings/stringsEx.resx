@@ -122,5 +122,5 @@
     <comment>Called when no enemies are able to spawn from the Monster Orb</comment>  </data>
   <data name="MSG_NO_WARP_ITEM" xml:space="preserve">
     <value>The {0} is not around...</value>
-    <comment>Called the player cannot warp to the item from the Blue/Orange Orb</comment>  </data>
+    <comment>Called the player cannot warp to the item from the Blue/Orange Portal Orb</comment>  </data>
 </root>

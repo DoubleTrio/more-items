@@ -52,6 +52,18 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 12
+},
+"bag_shiny_charm": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Shiny Charm",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 16
 }
 }
 }

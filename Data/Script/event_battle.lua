@@ -5,9 +5,8 @@ MobSpawnType = luanet.import_type('RogueEssence.LevelGen.MobSpawn')
 BATTLE_SCRIPT = {}
 
 function BATTLE_SCRIPT.MonsterOrbEvent(owner, ownerChar, context, args)
-	context.TurnCancel.Cancel = true
-  local radius = 5 -- 5 tiles square around the origin of the user!
-  local shiny_rate = 32 -- 1/32 chance to be shiny!
+  context.TurnCancel.Cancel = true
+  local radius = 5
 
   local rect_area = RogueElements.Loc(1)
   local rect_area2 = RogueElements.Loc(3)
@@ -75,7 +74,7 @@ function BATTLE_SCRIPT.MonsterOrbEvent(owner, ownerChar, context, args)
     for _ = 1, total_enemies, 1 do
       local randint = _DATA.Save.Rand:Next(0, all_spawns.Count - 1)
       local spawn = all_spawns[randint]
-      spawn.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnAltColor(shiny_rate))
+      spawn.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnAltColor(CONSTANTS.MONSTER_HOUSE_SHINY_RATE))
       house_event.Mobs:Add(spawn)
     end
   end
