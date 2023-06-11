@@ -55,7 +55,7 @@ function BATTLE_SCRIPT.MonsterOrbEvent(owner, ownerChar, context, args)
     end
   end
 
-  local house_event = PMDC.Dungeon.MonsterHouseMapEvent();
+  local house_event = PMDC.Dungeon.MonsterHouseMapEvent()
 
   local tl = RogueElements.Loc(leftmost_x - 1, upmost_y - 1)
   local br =  RogueElements.Loc(rightmost_x + 1, downmost_y + 1)
@@ -66,7 +66,7 @@ function BATTLE_SCRIPT.MonsterOrbEvent(owner, ownerChar, context, args)
   local min_enemies = math.floor(valid_tile_total / 5)
   local max_enemies = math.floor(valid_tile_total / 4)
   local total_enemies = _DATA.Save.Rand:Next(min_enemies, max_enemies)
-  
+
   local all_spawns = LUA_ENGINE:MakeGenericType( ListType, { MobSpawnType }, { })
   for i = 0,  _ZONE.CurrentMap.TeamSpawns.Count - 1, 1 do
     local possible_spawns = _ZONE.CurrentMap.TeamSpawns:GetSpawn(i):GetPossibleSpawns()
@@ -107,7 +107,7 @@ local function NearestItemLoc(origin, radius, item_name)
   for _ = 1, radius ^ 2 do
     local testLoc = RogueElements.Loc(origin.X + x, origin.Y + y)
     local item_idx = _ZONE.CurrentMap:GetItem(testLoc)
-  
+
     if item_idx ~= -1 then
       local item = _ZONE.CurrentMap.Items[item_idx]
       if item.Value == item_name then
@@ -116,7 +116,7 @@ local function NearestItemLoc(origin, radius, item_name)
     end
 
     if x == y or (x < 0 and x == -y) or (x > 0 and x == 1 - y) then
-        dx, dy = -dy, dx  
+        dx, dy = -dy, dx
     end
     x, y = x + dx, y + dy
   end
@@ -148,11 +148,44 @@ function BATTLE_SCRIPT.NearestItemInRadius(owner, ownerChar, context, args)
   end
 end
 
+-- NOTE: This is paired along side with BATTLE_SCRIPT.NearestItemInRadius
 function BATTLE_SCRIPT.WarpToItemEvent(owner, ownerChar, context, args)
   local tbl = LTBL(context.User)
   local item_loc = tbl.ItemLoc
   if item_loc ~= nil then
-    TASK:WaitTask(_DUNGEON:WarpNear(context.User, item_loc, 0, true));
+    TASK:WaitTask(_DUNGEON:WarpNear(context.User, item_loc, 0, true))
   end
   tbl.ItemLoc = nil
+end
+
+function BATTLE_SCRIPT.LogUseHeldItemEvent(owner, ownerChar, context, args)
+  local item = context.Target.EquippedItem
+  local player_display = context.Target:GetDisplayName(true)
+  local map_item = RogueEssence.Dungeon.MapItem(item)
+
+  local msg = RogueEssence.StringKey("MSG_USE_ITEM"):ToLocal()
+  msg = string.gsub(msg, "%{0%}", player_display)
+  msg = string.gsub(msg, "%{1%}", map_item:GetDungeonName())
+  _DUNGEON:LogMsg(msg)
+end
+
+function BATTLE_SCRIPT.SuperEffectiveCheckEvent(owner, ownerChar, context, args)
+  local type_matchup = PMDC.Dungeon.PreTypeEvent.GetDualEffectiveness(context.User, context.Target, context.Data)
+  type_matchup = type_matchup - PMDC.Dungeon.PreTypeEvent.NRM_2
+  if args.Reverse then
+    type_matchup = type_matchup * -1
+  end
+
+  local is_super_effective = type_matchup > 0
+  local is_physical_attack = context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical
+  local is_special_attack = context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical
+  if is_super_effective and (is_physical_attack or is_special_attack) then
+    --
+  else
+    context.CancelState.Cancel = true
+  end
+end
+
+function BATTLE_SCRIPT.RemoveHeldItemEvent(owner, ownerChar, context, args)
+  context.Target:SilentDequipItem()
 end

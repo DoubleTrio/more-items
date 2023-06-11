@@ -6,6 +6,7 @@ A PMDO mod that adds a variety of items into the game!
 * Blue Portal Orb
 * Orange Portal Orb
 * Shiny Charm **(\*\*)**
+* Weakness Policy
 
 ## Credits
 

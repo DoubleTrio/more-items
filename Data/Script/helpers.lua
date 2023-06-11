@@ -11,7 +11,6 @@ function HELPERS.AdjustShinySpawnRate(item_name, wild_chance, charm_chance)
     chance = charm_chance
   end
   local skin_state = PMDC.Dungeon.SkinTableState(chance, "shiny", "shiny")
-  local universal_states = _DATA.UniversalEvent.UniversalStates:Clone()
-  universal_states:Set(skin_state)
-  _DATA.UniversalEvent.UniversalStates = universal_states
+  -- NOTE: This line needs to be replaced with something more safer
+  -- _DATA.UniversalEvent.UniversalStates:Set(skin_state)
 end
