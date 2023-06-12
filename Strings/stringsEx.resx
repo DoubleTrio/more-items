@@ -125,5 +125,8 @@
     <comment>Called the player cannot warp to the item from the Blue/Orange Portal Orb</comment>  </data>
   <data name="MSG_USE_ITEM" xml:space="preserve">
     <value>{0} used it's {1}!</value>
-    <comment>Called the player cannot warp to the item from the Blue/Orange Portal Orb</comment>  </data>
+    <comment>Called the player uses it item (ex. Cell Battery, Absorb Bulb, Weakness Policy)</comment>  </data>
+  <data name="MSG_POP_ITEM" xml:space="preserve">
+    <value>{0}'s {1} popped!</value>
+    <comment>Called the player's Air Balloon is popped.</comment>  </data>
 </root>

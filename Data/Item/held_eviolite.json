@@ -3,19 +3,19 @@
 "Object": {
 "$type": "RogueEssence.Data.ItemData, RogueEssence",
 "Name": {
-"DefaultText": "Cell Battery",
+"DefaultText": "Eviolite",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise. It can only be used once.",
+"DefaultText": "A mysterious Evolutionary lump. When held by a Pokémon that can still evolve, it raises both Defense and Sp. Def.",
 "LocalTexts": {}
 },
 "Released": true,
 "Comment": "",
-"Sprite": "Battery_LightBlue",
+"Sprite": "Eviolite",
 "Icon": -1,
 "SortCategory": 10,
-"Price": 500,
+"Price": 2000,
 "Rarity": 0,
 "MaxStack": 0,
 "CannotDrop": false,
@@ -195,45 +195,9 @@
 ]
 },
 "Value": {
-"$type": "PMDC.Dungeon.AbsorbElementEvent, PMDC",
-"AbsorbElement": "electric",
-"SingleDraw": false,
-"GiveMsg": false,
-"BaseEvents": [
-{
 "$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
-"Script": "LogUseHeldItemEvent",
+"Script": "EvioliteEvent",
 "ArgTable": "{}"
-},
-{
-"$type": "PMDC.Dungeon.StatusStackBattleEvent, PMDC",
-"Stack": 1,
-"StatusID": "mod_attack",
-"AffectTarget": true,
-"SilentCheck": false,
-"Anonymous": false,
-"TriggerMsg": {
-"Key": null
-},
-"Anims": []
-},
-{
-"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
-"Script": "RemoveHeldItemEvent",
-"ArgTable": "{}"
-}
-],
-"Emitter": {
-"$type": "RogueEssence.Content.StaticAreaEmitter, RogueEssence",
-"LocHeight": 0,
-"Anims": [],
-"Bursts": 0,
-"ParticlesPerBurst": 0,
-"BurstTime": 0,
-"Range": 0,
-"Layer": 2
-},
-"Sound": "DUN_Drink"
 }
 }
 ],

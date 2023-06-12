@@ -6,7 +6,13 @@ A PMDO mod that adds a variety of items into the game!
 * Blue Portal Orb
 * Orange Portal Orb
 * Shiny Charm **(\*\*)**
-* Weakness Policy
+* Weakness Policy **(\*)**
+* Protective Pads **(\*)**
+* Cell Battery
+* Absorb Bulb
+* Air Balloon
+* Eviolite
+* Lucky Egg **(\*\*)**
 
 ## Credits
 
@@ -14,6 +20,6 @@ A PMDO mod that adds a variety of items into the game!
 
 ## Notes
 
-**(\*)** - The item is not fully functional yet
+**(\*)** - The item's sprite needs to be adjusted to better suit PMDO, but is completely functional
 
-**(\*\*)** - The item should NOT be used due to its instability
+**(\*\*)** - The item is not functional yet and should not be used

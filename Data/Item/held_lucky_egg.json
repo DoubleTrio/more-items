@@ -3,29 +3,29 @@
 "Object": {
 "$type": "RogueEssence.Data.ItemData, RogueEssence",
 "Name": {
-"DefaultText": "Cell Battery",
+"DefaultText": "Lucky Egg",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise. It can only be used once.",
+"DefaultText": "An item to be held by a Pokémon. It's an egg filled with happiness that earns extra Exp. Points in battle.",
 "LocalTexts": {}
 },
-"Released": true,
+"Released": false,
 "Comment": "",
-"Sprite": "Battery_LightBlue",
+"Sprite": "Egg_Lucky",
 "Icon": -1,
 "SortCategory": 10,
-"Price": 500,
+"Price": 1000,
 "Rarity": 0,
 "MaxStack": 0,
 "CannotDrop": false,
 "BagEffect": false,
 "ItemStates": [
 {
-"$type": "PMDC.Dungeon.EquipState, PMDC"
+"$type": "PMDC.Dungeon.HeldState, PMDC"
 },
 {
-"$type": "PMDC.Dungeon.HeldState, PMDC"
+"$type": "PMDC.Dungeon.EquipState, PMDC"
 }
 ],
 "UseAction": {
@@ -181,62 +181,26 @@
 "OnTurnEnds": [],
 "OnMapTurnEnds": [],
 "OnWalks": [],
-"OnDeaths": [],
+"OnDeaths": [
+{
+"Key": {
+"str": [
+9
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.SingleCharScriptEvent, RogueEssence",
+"Script": "LuckyEggEvent",
+"ArgTable": "{}"
+}
+}
+],
 "OnRefresh": [],
 "BeforeTryActions": [],
 "BeforeActions": [],
 "OnActions": [],
 "BeforeHittings": [],
-"BeforeBeingHits": [
-{
-"Key": {
-"str": [
-0
-]
-},
-"Value": {
-"$type": "PMDC.Dungeon.AbsorbElementEvent, PMDC",
-"AbsorbElement": "electric",
-"SingleDraw": false,
-"GiveMsg": false,
-"BaseEvents": [
-{
-"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
-"Script": "LogUseHeldItemEvent",
-"ArgTable": "{}"
-},
-{
-"$type": "PMDC.Dungeon.StatusStackBattleEvent, PMDC",
-"Stack": 1,
-"StatusID": "mod_attack",
-"AffectTarget": true,
-"SilentCheck": false,
-"Anonymous": false,
-"TriggerMsg": {
-"Key": null
-},
-"Anims": []
-},
-{
-"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
-"Script": "RemoveHeldItemEvent",
-"ArgTable": "{}"
-}
-],
-"Emitter": {
-"$type": "RogueEssence.Content.StaticAreaEmitter, RogueEssence",
-"LocHeight": 0,
-"Anims": [],
-"Bursts": 0,
-"ParticlesPerBurst": 0,
-"BurstTime": 0,
-"Range": 0,
-"Layer": 2
-},
-"Sound": "DUN_Drink"
-}
-}
-],
+"BeforeBeingHits": [],
 "AfterHittings": [],
 "AfterBeingHits": [],
 "OnHitTiles": [],

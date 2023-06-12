@@ -14,3 +14,13 @@ function SINGLE_CHAR_SCRIPT.AdjustShinyRate(owner, ownerChar, context, args)
 
   HELPERS.AdjustShinySpawnRate(item, wild_rate, charm_rate)
 end
+
+
+--TODO - Finish LuckyEggEvent event...
+--The problem is HandoutExpEvent applies to all members at once
+function SINGLE_CHAR_SCRIPT.LuckyEggEvent(owner, ownerChar, context, args)
+  local priority = RogueElements.Priority(10)
+  local index = 0
+  local event = _DATA.UniversalEvent.OnDeaths:Get(priority, index)
+  --context.CancelState.Cancel = true
+end

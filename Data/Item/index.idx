@@ -2,6 +2,60 @@
 "Version": "0.7.12.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"held_weakness_policy": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.EquipState"
+},
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.HeldState"
+}
+],
+"Name": {
+"DefaultText": "Weakness Policy",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 10
+},
+"bag_shiny_charm": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Shiny Charm",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "",
+"SortOrder": 16
+},
+"held_protective_pads": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.HeldState"
+},
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.EquipState"
+}
+],
+"Name": {
+"DefaultText": "Protective Pads",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 10
+},
 "orb_blue": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "UsageType": 1,
@@ -18,6 +72,48 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 12
+},
+"held_cell_battery": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.EquipState"
+},
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.HeldState"
+}
+],
+"Name": {
+"DefaultText": "Cell Battery",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 10
+},
+"held_absorb_bulb": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.EquipState"
+},
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.HeldState"
+}
+],
+"Name": {
+"DefaultText": "Absorb Bulb",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 10
 },
 "orb_orange": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
@@ -53,31 +149,7 @@
 "Comment": "",
 "SortOrder": 12
 },
-"bag_shiny_charm": {
-"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
-"UsageType": 0,
-"States": [],
-"Name": {
-"DefaultText": "Shiny Charm",
-"LocalTexts": {}
-},
-"Released": false,
-"Comment": "",
-"SortOrder": 16
-},
-"held_cell_battery": {
-"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
-"UsageType": 0,
-"States": [],
-"Name": {
-"DefaultText": "",
-"LocalTexts": {}
-},
-"Released": false,
-"Comment": "",
-"SortOrder": 0
-},
-"held_weakness_policy": {
+"held_air_balloon": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "UsageType": 0,
 "States": [
@@ -91,10 +163,52 @@
 }
 ],
 "Name": {
-"DefaultText": "Weakness Policy",
+"DefaultText": "Air Balloon",
 "LocalTexts": {}
 },
 "Released": true,
+"Comment": "",
+"SortOrder": 10
+},
+"held_eviolite": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.EquipState"
+},
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.HeldState"
+}
+],
+"Name": {
+"DefaultText": "Eviolite",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 10
+},
+"held_lucky_egg": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.HeldState"
+},
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.EquipState"
+}
+],
+"Name": {
+"DefaultText": "Lucky Egg",
+"LocalTexts": {}
+},
+"Released": false,
 "Comment": "",
 "SortOrder": 10
 }

@@ -3,6 +3,7 @@ require 'helpers'
 
 ListType = luanet.import_type('System.Collections.Generic.List`1')
 MobSpawnType = luanet.import_type('RogueEssence.LevelGen.MobSpawn')
+DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
 
 BATTLE_SCRIPT = {}
 
@@ -188,4 +189,51 @@ end
 
 function BATTLE_SCRIPT.RemoveHeldItemEvent(owner, ownerChar, context, args)
   context.Target:SilentDequipItem()
+end
+
+function BATTLE_SCRIPT.AirBalloonEvent(owner, ownerChar, context, args)
+  if context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill or context.ActionType == RogueEssence.Dungeon.BattleActionType.Item then
+    if context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical or context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical then
+      local item = context.Target.EquippedItem
+      local player_display = context.Target:GetDisplayName(true)
+      local map_item = RogueEssence.Dungeon.MapItem(item)
+      local msg = RogueEssence.StringKey("MSG_POP_ITEM"):ToLocal()
+      msg = string.gsub(msg, "%{0%}", player_display)
+      msg = string.gsub(msg, "%{1%}", map_item:GetDungeonName())
+      _DUNGEON:LogMsg(msg)
+      context.Target:SilentDequipItem()
+    end
+  end
+end
+
+function BATTLE_SCRIPT.EvioliteEvent(owner, ownerChar, context, args)
+  local DEFAULT_NUM = 20
+
+  --NOTE: A 50% decrease in damage was a bit powerful... 
+  --This has been nerfed to 20%
+  local DEFUALT_DENOM = 25
+
+  local phy_num = DEFAULT_NUM
+  local phy_denom = DEFUALT_DENOM
+
+  local spec_num = DEFAULT_NUM
+  local spec_denom = DEFUALT_DENOM
+
+  if type(args.PhyNum) == "number" then p_num = args.PhyNum end
+  if type(args.PhyDenom) == "number" then p_denom = args.PhyDenom end
+  if type(args.SpecNum) == "number" then spec_num = args.SpecNum end
+  if type(args.SpecDenom) == "number" then spec_denom = args.SpecDenom end
+  local apply_effect = GAME:CanPromote(context.Target)
+  if args.Reverse then apply_effect = (not apply_effect) end
+
+  if apply_effect then
+    local effects = {
+      PMDC.Dungeon.MultiplyCategoryEvent(RogueEssence.Data.BattleData.SkillCategory.Physical, phy_num, phy_denom),
+      PMDC.Dungeon.MultiplyCategoryEvent(RogueEssence.Data.BattleData.SkillCategory.Magical, spec_num, spec_denom)
+    }
+
+    for _, effect in pairs(effects) do
+      TASK:WaitTask(effect:Apply(owner, ownerChar, context))
+    end
+  end
 end
