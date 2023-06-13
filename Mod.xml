@@ -4,7 +4,7 @@
   <Description>Adds a variety of items into the game!</Description>
   <Namespace>more_items</Namespace>
   <UUID>F6BDDA12-6EC8-4FF5-98B9-7120AF4055C2</UUID>
-  <Version>0.1</Version>
+  <Version>0.2</Version>
   <ModType>Mod</ModType>
   <Relationships />
 </Header>

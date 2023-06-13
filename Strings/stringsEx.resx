@@ -128,5 +128,8 @@
     <comment>Called the player uses it item (ex. Cell Battery, Absorb Bulb, Weakness Policy)</comment>  </data>
   <data name="MSG_POP_ITEM" xml:space="preserve">
     <value>{0}'s {1} popped!</value>
-    <comment>Called the player's Air Balloon is popped.</comment>  </data>
+    <comment>Called the player's Air Balloon is popped</comment>  </data>
+  <data name="MSG_STENGTHEN_POWER" xml:space="preserve">
+    <value>The {1} strengthened {0}'s power!</value>
+    <comment>Called the player uses the Snowball or a gem</comment>  </data>
 </root>

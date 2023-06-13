@@ -2,6 +2,63 @@
 "Version": "0.7.12.0",
 "Object": {
 "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[RogueEssence.Data.EntrySummary, RogueEssence]], System.Private.CoreLib",
+"gem_ghost": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Ghost Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"held_lucky_egg": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.HeldState"
+},
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.EquipState"
+}
+],
+"Name": {
+"DefaultText": "Lucky Egg",
+"LocalTexts": {}
+},
+"Released": false,
+"Comment": "WIP",
+"SortOrder": 10
+},
+"gem_fairy": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Fairy Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_poison": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Poison Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
 "held_weakness_policy": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "UsageType": 0,
@@ -23,6 +80,42 @@
 "Comment": "",
 "SortOrder": 10
 },
+"gem_dark": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Dark Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_electric": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Electric Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_bug": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Bug Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
 "bag_shiny_charm": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "UsageType": 0,
@@ -32,8 +125,8 @@
 "LocalTexts": {}
 },
 "Released": false,
-"Comment": "",
-"SortOrder": 16
+"Comment": "WIP",
+"SortOrder": 13
 },
 "held_protective_pads": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
@@ -94,6 +187,27 @@
 "Comment": "",
 "SortOrder": 10
 },
+"held_eviolite": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.EquipState"
+},
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.HeldState"
+}
+],
+"Name": {
+"DefaultText": "Eviolite",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 10
+},
 "held_absorb_bulb": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "UsageType": 0,
@@ -114,6 +228,78 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 10
+},
+"gem_flying": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Flying Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_fire": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Fire Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_psychic": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Psychic Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_water": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Water Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_dragon": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Dragon Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_ground": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Ground Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
 },
 "orb_orange": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
@@ -149,6 +335,18 @@
 "Comment": "",
 "SortOrder": 12
 },
+"gem_fighting": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Fighting Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
 "held_air_balloon": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "UsageType": 0,
@@ -170,28 +368,88 @@
 "Comment": "",
 "SortOrder": 10
 },
-"held_eviolite": {
+"gem_ice": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Ice Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_normal": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Normal Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_steel": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Steel Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_grass": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Grass Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"gem_rock": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [],
+"Name": {
+"DefaultText": "Rock Gem",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 17
+},
+"held_fickle_specs": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "UsageType": 0,
 "States": [
 {
 "assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
-"type": "PMDC.Dungeon.EquipState"
+"type": "PMDC.Dungeon.HeldState"
 },
 {
 "assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
-"type": "PMDC.Dungeon.HeldState"
+"type": "PMDC.Dungeon.EquipState"
 }
 ],
 "Name": {
-"DefaultText": "Eviolite",
+"DefaultText": "Fickle Specs",
 "LocalTexts": {}
 },
 "Released": true,
 "Comment": "",
 "SortOrder": 10
 },
-"held_lucky_egg": {
+"held_snowball": {
 "$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
 "UsageType": 0,
 "States": [
@@ -205,10 +463,10 @@
 }
 ],
 "Name": {
-"DefaultText": "Lucky Egg",
+"DefaultText": "Snowball",
 "LocalTexts": {}
 },
-"Released": false,
+"Released": true,
 "Comment": "",
 "SortOrder": 10
 }

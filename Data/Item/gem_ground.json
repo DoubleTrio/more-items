@@ -3,31 +3,24 @@
 "Object": {
 "$type": "RogueEssence.Data.ItemData, RogueEssence",
 "Name": {
-"DefaultText": "Cell Battery",
+"DefaultText": "Ground Gem",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise. It can only be used once.",
+"DefaultText": "A gem with an essence of land. When held, it strengthens the power of a Ground-type move one time. ",
 "LocalTexts": {}
 },
 "Released": true,
 "Comment": "",
-"Sprite": "Battery_LightBlue",
+"Sprite": "Gem_Ground",
 "Icon": -1,
-"SortCategory": 10,
-"Price": 250,
+"SortCategory": 17,
+"Price": 100,
 "Rarity": 0,
 "MaxStack": 0,
 "CannotDrop": false,
 "BagEffect": false,
-"ItemStates": [
-{
-"$type": "PMDC.Dungeon.EquipState, PMDC"
-},
-{
-"$type": "PMDC.Dungeon.HeldState, PMDC"
-}
-],
+"ItemStates": [],
 "UseAction": {
 "$type": "RogueEssence.Dungeon.AttackAction, RogueEssence",
 "HitTiles": false,
@@ -185,9 +178,7 @@
 "OnRefresh": [],
 "BeforeTryActions": [],
 "BeforeActions": [],
-"OnActions": [],
-"BeforeHittings": [],
-"BeforeBeingHits": [
+"OnActions": [
 {
 "Key": {
 "str": [
@@ -195,48 +186,14 @@
 ]
 },
 "Value": {
-"$type": "PMDC.Dungeon.AbsorbElementEvent, PMDC",
-"AbsorbElement": "electric",
-"SingleDraw": false,
-"GiveMsg": false,
-"BaseEvents": [
-{
 "$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
-"Script": "LogUseHeldItemEvent",
-"ArgTable": "{}"
-},
-{
-"$type": "PMDC.Dungeon.StatusStackBattleEvent, PMDC",
-"Stack": 1,
-"StatusID": "mod_attack",
-"AffectTarget": true,
-"SilentCheck": false,
-"Anonymous": false,
-"TriggerMsg": {
-"Key": null
-},
-"Anims": []
-},
-{
-"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
-"Script": "RemoveHeldItemEvent",
-"ArgTable": "{}"
-}
-],
-"Emitter": {
-"$type": "RogueEssence.Content.StaticAreaEmitter, RogueEssence",
-"LocHeight": 0,
-"Anims": [],
-"Bursts": 0,
-"ParticlesPerBurst": 0,
-"BurstTime": 0,
-"Range": 0,
-"Layer": 2
-},
-"Sound": "DUN_Drink"
+"Script": "GemEvent",
+"ArgTable": "{ Element = \"ground\" }"
 }
 }
 ],
+"BeforeHittings": [],
+"BeforeBeingHits": [],
 "AfterHittings": [],
 "AfterBeingHits": [],
 "OnHitTiles": [],

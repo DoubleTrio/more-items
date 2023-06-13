@@ -4,6 +4,9 @@ require 'helpers'
 ListType = luanet.import_type('System.Collections.Generic.List`1')
 MobSpawnType = luanet.import_type('RogueEssence.LevelGen.MobSpawn')
 DamageDealtType = luanet.import_type('PMDC.Dungeon.DamageDealt')
+IDStateType = luanet.import_type('PMDC.Dungeon.IDState')
+RecentStateType = luanet.import_type('PMDC.Dungeon.RecentState')
+CountDownStateType = luanet.import_type('RogueEssence.Dungeon.CountDownState')
 
 BATTLE_SCRIPT = {}
 
@@ -160,14 +163,11 @@ function BATTLE_SCRIPT.WarpToItemEvent(owner, ownerChar, context, args)
 end
 
 function BATTLE_SCRIPT.LogUseHeldItemEvent(owner, ownerChar, context, args)
-  local item = context.Target.EquippedItem
-  local player_display = context.Target:GetDisplayName(true)
-  local map_item = RogueEssence.Dungeon.MapItem(item)
-
-  local msg = RogueEssence.StringKey("MSG_USE_ITEM"):ToLocal()
-  msg = string.gsub(msg, "%{0%}", player_display)
-  msg = string.gsub(msg, "%{1%}", map_item:GetDungeonName())
-  _DUNGEON:LogMsg(msg)
+  local key = "MSG_USE_ITEM"
+  local is_user = false
+  if type(args.Key) == "string" then key = args.Key end
+  if type(args.IsUser) == "boolean" then is_user = args.IsUser end
+  HELPERS.LogSingleUseDungeonItem(context, key, is_user)
 end
 
 function BATTLE_SCRIPT.SuperEffectiveCheckEvent(owner, ownerChar, context, args)
@@ -180,8 +180,19 @@ function BATTLE_SCRIPT.SuperEffectiveCheckEvent(owner, ownerChar, context, args)
   local is_super_effective = type_matchup > 0
   local is_physical_attack = context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical
   local is_special_attack = context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical
-  if is_super_effective and (is_physical_attack or is_special_attack) then
+  if is_super_effective and (is_physical_attack or is_special_attack) and not context.Target.Dead then
     --
+  else
+    context.CancelState.Cancel = true
+  end
+end
+
+function BATTLE_SCRIPT.ElementCheckEvent(owner, ownerChar, context, args)
+  local element = args.Element
+  local is_physical_attack = context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical
+  local is_special_attack = context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical
+  if context.Data.Element == element and (is_physical_attack or is_special_attack) and not context.Target.Dead then
+    -- 
   else
     context.CancelState.Cancel = true
   end
@@ -194,23 +205,16 @@ end
 function BATTLE_SCRIPT.AirBalloonEvent(owner, ownerChar, context, args)
   if context.ActionType == RogueEssence.Dungeon.BattleActionType.Skill or context.ActionType == RogueEssence.Dungeon.BattleActionType.Item then
     if context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical or context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical then
-      local item = context.Target.EquippedItem
-      local player_display = context.Target:GetDisplayName(true)
-      local map_item = RogueEssence.Dungeon.MapItem(item)
-      local msg = RogueEssence.StringKey("MSG_POP_ITEM"):ToLocal()
-      msg = string.gsub(msg, "%{0%}", player_display)
-      msg = string.gsub(msg, "%{1%}", map_item:GetDungeonName())
-      _DUNGEON:LogMsg(msg)
+      HELPERS.LogSingleUseDungeonItem(context, "MSG_POP_ITEM", false)
       context.Target:SilentDequipItem()
     end
   end
 end
 
 function BATTLE_SCRIPT.EvioliteEvent(owner, ownerChar, context, args)
-  local DEFAULT_NUM = 20
-
   --NOTE: A 50% decrease in damage was a bit powerful... 
   --This has been nerfed to 20%
+  local DEFAULT_NUM = 20
   local DEFUALT_DENOM = 25
 
   local phy_num = DEFAULT_NUM
@@ -235,5 +239,50 @@ function BATTLE_SCRIPT.EvioliteEvent(owner, ownerChar, context, args)
     for _, effect in pairs(effects) do
       TASK:WaitTask(effect:Apply(owner, ownerChar, context))
     end
+  end
+end
+
+function BATTLE_SCRIPT.GemEvent(owner, ownerChar, context, args)
+  local element = args.Element
+  local DEFAULT_NUM = 15
+  local DEFUALT_DENOM = 10
+
+  local num = DEFAULT_NUM
+  local denom = DEFUALT_DENOM
+  if type(args.Numerator) == "number" then num = args.Numerator end
+  if type(args.Denominator) == "number" then denom = args.Denominator end
+
+  if context.Data.Element == element and (context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Magical or context.Data.Category == RogueEssence.Data.BattleData.SkillCategory.Physical) then
+    HELPERS.LogSingleUseDungeonItem(context, "MSG_STENGTHEN_POWER", true)
+    local multiply_element = PMDC.Dungeon.MultiplyDamageEvent(num, denom)
+    TASK:WaitTask(multiply_element:Apply(owner, ownerChar, context))
+    context.User:SilentDequipItem()
+  end
+end
+
+function BATTLE_SCRIPT.FickleSpecsEvent(owner, ownerChar, context, args)
+  local boost_rate = 2
+  if type(args.BoostRate) == "number" then boost_rate = args.BoostRate end
+
+  local move_status_id = "last_used_move"
+  local move_repeat_status_id = "times_move_used"
+  local move_status = context.User:GetStatusEffect(move_status_id)
+  local repeat_status = context.User:GetStatusEffect(move_repeat_status_id)
+  if move_status == nil or repeat_status == nil then
+    return
+  end
+  if move_status.StatusStates:Get(luanet.ctype(IDStateType)).ID == context.Data.ID then
+    return
+  end
+  if not repeat_status.StatusStates:Contains(luanet.ctype(RecentStateType)) then
+    return
+  end
+
+  local effects = {
+    PMDC.Dungeon.BoostCriticalEvent(boost_rate)
+  }
+
+  for _, effect in pairs(effects) do
+    TASK:WaitTask(effect:Apply(owner, ownerChar, context))
   end
 end

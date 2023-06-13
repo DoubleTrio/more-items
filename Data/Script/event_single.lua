@@ -23,4 +23,6 @@ function SINGLE_CHAR_SCRIPT.LuckyEggEvent(owner, ownerChar, context, args)
   local index = 0
   local event = _DATA.UniversalEvent.OnDeaths:Get(priority, index)
   --context.CancelState.Cancel = true
+  --GetValue
+  --GetItems(Priority priority)
 end

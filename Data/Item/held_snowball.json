@@ -3,16 +3,16 @@
 "Object": {
 "$type": "RogueEssence.Data.ItemData, RogueEssence",
 "Name": {
-"DefaultText": "Cell Battery",
+"DefaultText": "Snowball",
 "LocalTexts": {}
 },
 "Desc": {
-"DefaultText": "A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise. It can only be used once.",
+"DefaultText": "An item to be held by a Pokémon. It boosts Attack if hit with an Ice-type attack. It can only be used once.",
 "LocalTexts": {}
 },
 "Released": true,
 "Comment": "",
-"Sprite": "Battery_LightBlue",
+"Sprite": "Snowball",
 "Icon": -1,
 "SortCategory": 10,
 "Price": 250,
@@ -22,10 +22,10 @@
 "BagEffect": false,
 "ItemStates": [
 {
-"$type": "PMDC.Dungeon.EquipState, PMDC"
+"$type": "PMDC.Dungeon.HeldState, PMDC"
 },
 {
-"$type": "PMDC.Dungeon.HeldState, PMDC"
+"$type": "PMDC.Dungeon.EquipState, PMDC"
 }
 ],
 "UseAction": {
@@ -187,7 +187,21 @@
 "BeforeActions": [],
 "OnActions": [],
 "BeforeHittings": [],
-"BeforeBeingHits": [
+"BeforeBeingHits": [],
+"AfterHittings": [],
+"AfterBeingHits": [
+{
+"Key": {
+"str": [
+-1
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
+"Script": "ElementCheckEvent",
+"ArgTable": "{ Element = \"ice\" }"
+}
+},
 {
 "Key": {
 "str": [
@@ -195,50 +209,43 @@
 ]
 },
 "Value": {
-"$type": "PMDC.Dungeon.AbsorbElementEvent, PMDC",
-"AbsorbElement": "electric",
-"SingleDraw": false,
-"GiveMsg": false,
-"BaseEvents": [
-{
 "$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
 "Script": "LogUseHeldItemEvent",
-"ArgTable": "{}"
+"ArgTable": "{ Key = \"MSG_STENGTHEN_POWER\" }"
+}
 },
 {
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
+"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
+"Script": "RemoveHeldItemEvent",
+"ArgTable": "{}"
+}
+},
+{
+"Key": {
+"str": [
+0
+]
+},
+"Value": {
 "$type": "PMDC.Dungeon.StatusStackBattleEvent, PMDC",
 "Stack": 1,
 "StatusID": "mod_attack",
 "AffectTarget": true,
-"SilentCheck": false,
+"SilentCheck": true,
 "Anonymous": false,
 "TriggerMsg": {
 "Key": null
 },
 "Anims": []
-},
-{
-"$type": "RogueEssence.Dungeon.BattleScriptEvent, RogueEssence",
-"Script": "RemoveHeldItemEvent",
-"ArgTable": "{}"
-}
-],
-"Emitter": {
-"$type": "RogueEssence.Content.StaticAreaEmitter, RogueEssence",
-"LocHeight": 0,
-"Anims": [],
-"Bursts": 0,
-"ParticlesPerBurst": 0,
-"BurstTime": 0,
-"Range": 0,
-"Layer": 2
-},
-"Sound": "DUN_Drink"
 }
 }
 ],
-"AfterHittings": [],
-"AfterBeingHits": [],
 "OnHitTiles": [],
 "AfterActions": [],
 "UserElementEffects": [],
