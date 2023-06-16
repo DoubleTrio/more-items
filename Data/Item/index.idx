@@ -469,6 +469,27 @@
 "Released": true,
 "Comment": "",
 "SortOrder": 10
+},
+"held_heavy_rotation_specs": {
+"$type": "RogueEssence.Data.ItemEntrySummary, RogueEssence",
+"UsageType": 0,
+"States": [
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.HeldState"
+},
+{
+"assembly": "PMDC, Version=0.7.12.0, Culture=neutral, PublicKeyToken=null",
+"type": "PMDC.Dungeon.EquipState"
+}
+],
+"Name": {
+"DefaultText": "Heavy Rotation Specs",
+"LocalTexts": {}
+},
+"Released": true,
+"Comment": "",
+"SortOrder": 10
 }
 }
 }

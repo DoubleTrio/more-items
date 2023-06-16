@@ -19,7 +19,7 @@ A PMDO mod that adds a variety of items into the game!
 
 ## Credits
 
-* [FlarosOverfield](https://github.com/FlarosOverfield/ItemAsset) - Sprite Rips
+* [FlarosOverfield](https://github.com/FlarosOverfield/ItemAsset) - Sprite rips and edits
 
 ## Notes
 
@@ -28,3 +28,5 @@ A PMDO mod that adds a variety of items into the game!
 **(\*\*)** - The item is not functional yet and should not be used
 
 Currently, Weakness Policy and Snowball activate even if you have maxed stats
+
+The items have not been localized to other languages.

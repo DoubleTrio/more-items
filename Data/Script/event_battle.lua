@@ -82,7 +82,7 @@ function BATTLE_SCRIPT.MonsterOrbEvent(owner, ownerChar, context, args)
 
   if all_spawns.Count > 0 then
     for _ = 1, total_enemies, 1 do
-      local randint = _DATA.Save.Rand:Next(0, all_spawns.Count - 1)
+      local randint = _DATA.Save.Rand:Next(0, all_spawns.Count)
       local spawn = all_spawns[randint]
       spawn.SpawnFeatures:Add(PMDC.LevelGen.MobSpawnAltColor(shiny_rate))
       house_event.Mobs:Add(spawn)
@@ -262,7 +262,9 @@ end
 
 function BATTLE_SCRIPT.FickleSpecsEvent(owner, ownerChar, context, args)
   local boost_rate = 2
+  local reverse = false
   if type(args.BoostRate) == "number" then boost_rate = args.BoostRate end
+  if type(args.Reverse) == "boolean" then reverse = args.Reverse end
 
   local move_status_id = "last_used_move"
   local move_repeat_status_id = "times_move_used"
@@ -271,7 +273,12 @@ function BATTLE_SCRIPT.FickleSpecsEvent(owner, ownerChar, context, args)
   if move_status == nil or repeat_status == nil then
     return
   end
-  if move_status.StatusStates:Get(luanet.ctype(IDStateType)).ID == context.Data.ID then
+  local contains_move_id = move_status.StatusStates:Get(luanet.ctype(IDStateType)).ID == context.Data.ID
+  if reverse then
+    contains_move_id = not contains_move_id
+  end
+
+  if contains_move_id then
     return
   end
   if not repeat_status.StatusStates:Contains(luanet.ctype(RecentStateType)) then
