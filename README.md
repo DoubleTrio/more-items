@@ -19,7 +19,7 @@ A PMDO mod that adds a variety of items into the game!
 
 ## Credits
 
-* [FlarosOverfield](https://github.com/FlarosOverfield/ItemAsset) - Sprite rips and edits
+* [Miles Farber](https://github.com/MilesFarber/ItemAsset) - Sprite rips and edits
 
 ## Notes
 
