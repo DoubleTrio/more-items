@@ -12,7 +12,7 @@ A PMDO mod that adds a variety of items into the game!
 * Orange Portal Orb
 * Monster Orb
 * Protective Pads **(\*)**
-* Shiny Charm **(\*\*)**
+* Shiny Charm
 * Snowball
 * Weakness Policy **(\*)**
 * All Gem Types
@@ -27,6 +27,8 @@ A PMDO mod that adds a variety of items into the game!
 
 **(\*\*)** - The item is not functional yet and should not be used
 
-Currently, Weakness Policy and Snowball activate even if you have maxed stats
+Currently, Weakness Policy and Snowball activate even if you have maxed stats, when it shouldn't
 
 The items have not been localized to other languages.
+
+Using the Shiny Charm when traveling to different areas through the Dev mode menu can cause the game to crash

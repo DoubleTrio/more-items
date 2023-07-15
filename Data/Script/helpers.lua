@@ -10,9 +10,8 @@ function HELPERS.AdjustShinySpawnRate(item_name, wild_chance, charm_chance)
   if slot:IsValid() then
     chance = charm_chance
   end
-  local skin_state = PMDC.Dungeon.SkinTableState(chance, "shiny", "shiny")
-  -- NOTE: This line needs to be replaced with something more safer
-  -- _DATA.UniversalEvent.UniversalStates:Set(skin_state)
+  SkinTableStateType = luanet.import_type('PMDC.Dungeon.SkinTableState')
+  _DATA.UniversalEvent.UniversalStates:GetWithDefault(luanet.ctype(SkinTableStateType)).AltColorOdds = chance
 end
 
 ---@param context BattleContext

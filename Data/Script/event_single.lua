@@ -3,7 +3,7 @@ require "helpers"
 
 SINGLE_CHAR_SCRIPT = {}
 
-function SINGLE_CHAR_SCRIPT.AdjustShinyRate(owner, ownerChar, context, args)
+function SINGLE_CHAR_SCRIPT.ShinyCharmEvent(owner, ownerChar, context, args)
   local wild_rate = CONSTANTS.WILD_SHINY_RATE
   local charm_rate = CONSTANTS.CHARM_SHINY_RATE
   local item = "bag_shiny_charm"
@@ -12,9 +12,18 @@ function SINGLE_CHAR_SCRIPT.AdjustShinyRate(owner, ownerChar, context, args)
   if type(args.CharmRate) == "number" then charm_rate = args.CharmRate end
   if type(args.ShinyItem) == "string" then item = args.ShinyItem end
 
-  HELPERS.AdjustShinySpawnRate(item, wild_rate, charm_rate)
+  -- Check held only, not in inventory, and only check once
+  if context.User == _DUNGEON.ActiveTeam.Leader then
+    if (GAME:FindPlayerItem(item, true, false):IsValid()) then
+      _DATA.UniversalEvent.UniversalStates:GetWithDefault(luanet.ctype(SkinTableStateType)).AltColorOdds = charm_rate
+    else
+      _DATA.UniversalEvent.UniversalStates:GetWithDefault(luanet.ctype(SkinTableStateType)).AltColorOdds = wild_rate
+    end
+  end
 end
 
+-- Item = item;
+-- PrevItem = prevItem;
 
 --TODO - Finish LuckyEggEvent event...
 --The problem is HandoutExpEvent applies to all members at once
